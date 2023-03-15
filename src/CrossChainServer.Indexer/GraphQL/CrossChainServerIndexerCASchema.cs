@@ -1,3 +1,4 @@
+using System;
 using AElfIndexer.Client.GraphQL;
 
 namespace CrossChainServer.Indexer.GraphQL;

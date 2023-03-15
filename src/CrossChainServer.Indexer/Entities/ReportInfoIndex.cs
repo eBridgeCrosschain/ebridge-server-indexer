@@ -1,3 +1,4 @@
+using System;
 using AElf.Indexing.Elasticsearch;
 using AElfIndexer.Client;
 using Nest;
@@ -16,6 +17,7 @@ public class ReportInfoIndex : AElfIndexerClientEntity<string>, IIndexBuild
     [Keyword]
     public string ReceiptHash { get; set; }
     public ReportStep Step { get; set; }
+    public DateTime BlockTime { get; set; }
 
 }
 

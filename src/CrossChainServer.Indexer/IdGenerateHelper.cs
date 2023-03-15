@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace CrossChainServer.Indexer;
 
 public static class IdGenerateHelper

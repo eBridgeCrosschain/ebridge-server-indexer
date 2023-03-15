@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using AElf.Contracts.Oracle;
 using AElfIndexer.Client;
 using AElfIndexer.Client.Handlers;
@@ -17,7 +19,7 @@ public class QueryCreatedProcessor: OracleProcessorBase<QueryCreated>
         : base(logger, objectMapper, repository, contractInfoOptions)
     {
     }
-    
+
     protected override async Task HandleEventAsync(QueryCreated eventValue, LogEventContext context)
     {
         var id = GetOracleInfoId(context.ChainId, eventValue.QueryId);
@@ -25,18 +27,17 @@ public class QueryCreatedProcessor: OracleProcessorBase<QueryCreated>
         var starIndex = Convert.ToInt64(eventValue.QueryInfo.Options[0].Split(".")[1]);
         var endIndex = Convert.ToInt64(eventValue.QueryInfo.Options[1].Split(".")[1]);
 
-        for (var i = starIndex; i <= endIndex; i++)
+        var info = new OracleQueryInfoIndex()
         {
-            var info = new OracleQueryInfoIndex()
-            {
-                Id = id,
-                Option = $"{receiptHash}.{i}",
-                Step = OracleStep.QueryCreated,
-                QueryId = eventValue.QueryId.ToHex(),
-            };
-            ObjectMapper.Map<LogEventContext, OracleQueryInfoIndex>(context, info);
+            Id = id,
+            ReceiptHash = receiptHash,
+            StartIndex = starIndex,
+            EndIndex = endIndex,
+            Step = OracleStep.QueryCreated,
+            QueryId = eventValue.QueryId.ToHex(),
+        };
+        ObjectMapper.Map<LogEventContext, OracleQueryInfoIndex>(context, info);
 
-            await Repository.AddOrUpdateAsync(info);
-        }
+        await Repository.AddOrUpdateAsync(info);
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using AElf.Indexing.Elasticsearch;
 using AElfIndexer.Client;
 using Nest;
@@ -9,8 +10,11 @@ public class OracleQueryInfoIndex : AElfIndexerClientEntity<string>, IIndexBuild
     [Keyword]
     public string QueryId { get; set; }
     [Keyword]
-    public string Option { get; set; }
+    public string ReceiptHash { get; set; }
+    public long StartIndex { get; set; }
+    public long EndIndex { get; set; }
     public OracleStep Step { get; set; }
+    public DateTime BlockTime { get; set; }
 }
 
 public enum OracleStep

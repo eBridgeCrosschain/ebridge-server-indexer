@@ -1,3 +1,4 @@
+using System;
 using CrossChainServer.Indexer.Entities;
 
 namespace CrossChainServer.Indexer.GraphQL;

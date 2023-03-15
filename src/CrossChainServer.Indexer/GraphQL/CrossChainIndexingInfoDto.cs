@@ -1,3 +1,5 @@
+using System;
+
 namespace CrossChainServer.Indexer.GraphQL;
 
 public class CrossChainIndexingInfoDto : GraphQLDto
