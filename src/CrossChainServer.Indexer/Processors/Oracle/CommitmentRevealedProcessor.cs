@@ -21,10 +21,13 @@ public class CommitmentRevealedProcessor : OracleProcessorBase<CommitmentReveale
 
     protected override async Task HandleEventAsync(CommitmentRevealed eventValue, LogEventContext context)
     {
-        var id = GetOracleInfoId(context.ChainId, eventValue.QueryId);
-
-        var info = await Repository.GetFromBlockStateSetAsync(id, context.ChainId);
-        info.Step = OracleStep.CommitmentRevealed;
+        var id = IdGenerateHelper.GetId(context.ChainId, context.TransactionId);
+        var info = new OracleQueryInfoIndex()
+        {
+            Id = id,
+            Step = OracleStep.CommitmentRevealed,
+            QueryId = eventValue.QueryId.ToHex(),
+        };
         ObjectMapper.Map<LogEventContext, OracleQueryInfoIndex>(context, info);
 
         await Repository.AddOrUpdateAsync(info);

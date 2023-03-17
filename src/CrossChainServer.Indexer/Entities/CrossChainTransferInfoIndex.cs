@@ -4,7 +4,7 @@ using Nest;
 
 namespace CrossChainServer.Indexer.Entities;
 
-public class CrossChainTransferInfoIndex : AElfIndexerClientEntity<string>, IIndexBuild
+public class CrossChainTransferInfoIndex : CrossChainServerIndexerEntity<string>, IIndexBuild
 {
     [Keyword]
     public string FromChainId { get; set; }
@@ -28,10 +28,17 @@ public class CrossChainTransferInfoIndex : AElfIndexerClientEntity<string>, IInd
     public string TransferTokenSymbol { get; set; }
     public string ReceiveTokenSymbol { get; set; }
     public TransferType TransferType { get; set; }
+    public CrossChainType CrossChainType { get; set; }
 }
 
 public enum TransferType
 {
     Transfer,
     Receive
+}
+
+public enum CrossChainType
+{
+    Homogeneous,
+    Heterogeneous
 }

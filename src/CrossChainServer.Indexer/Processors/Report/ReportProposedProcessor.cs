@@ -26,12 +26,10 @@ public class ReportProposedProcessor: ReportProcessorBase<ReportProposed>
             return;
         }
 
-        var reportId = GetReportInfoId(context.ChainId, eventValue.RoundId, eventValue.Token,
-            eventValue.TargetChainId);
-
+        var id = IdGenerateHelper.GetId(context.ChainId, context.TransactionId);
         var reportInfo = new ReportInfoIndex()
         {
-            Id = reportId,
+            Id = id,
             ReceiptId = eventValue.QueryInfo.Title.Split("_")[2],
             ReceiptHash = eventValue.QueryInfo.Options[0],
             RoundId = eventValue.RoundId,

@@ -22,10 +22,13 @@ public class QueryCompletedWithoutAggregationProcessor : OracleProcessorBase<Que
 
     protected override async Task HandleEventAsync(QueryCompletedWithoutAggregation eventValue, LogEventContext context)
     {
-        var id = GetOracleInfoId(context.ChainId, eventValue.QueryId);
-
-        var info = await Repository.GetFromBlockStateSetAsync(id, context.ChainId);
-        info.Step = OracleStep.QueryCompleted;
+        var id = IdGenerateHelper.GetId(context.ChainId, context.TransactionId);
+        var info = new OracleQueryInfoIndex()
+        {
+            Id = id,
+            Step = OracleStep.QueryCompleted,
+            QueryId = eventValue.QueryId.ToHex(),
+        };
         ObjectMapper.Map<LogEventContext, OracleQueryInfoIndex>(context, info);
 
         await Repository.AddOrUpdateAsync(info);

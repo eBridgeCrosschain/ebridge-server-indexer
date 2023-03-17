@@ -22,7 +22,7 @@ public class QueryCreatedProcessor: OracleProcessorBase<QueryCreated>
 
     protected override async Task HandleEventAsync(QueryCreated eventValue, LogEventContext context)
     {
-        var id = GetOracleInfoId(context.ChainId, eventValue.QueryId);
+        var id = IdGenerateHelper.GetId(context.ChainId, context.TransactionId);
         var receiptHash = eventValue.QueryInfo.Options[0].Split(".")[0];
         var starIndex = Convert.ToInt64(eventValue.QueryInfo.Options[0].Split(".")[1]);
         var endIndex = Convert.ToInt64(eventValue.QueryInfo.Options[1].Split(".")[1]);

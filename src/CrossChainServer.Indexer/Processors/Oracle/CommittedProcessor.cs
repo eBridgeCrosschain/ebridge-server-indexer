@@ -21,10 +21,13 @@ public class CommittedProcessor : OracleProcessorBase<Committed>
 
     protected override async Task HandleEventAsync(Committed eventValue, LogEventContext context)
     {
-        var id = GetOracleInfoId(context.ChainId, eventValue.QueryId);
-
-        var info = await Repository.GetFromBlockStateSetAsync(id, context.ChainId);
-        info.Step = OracleStep.Committed;
+        var id = IdGenerateHelper.GetId(context.ChainId, context.TransactionId);
+        var info = new OracleQueryInfoIndex()
+        {
+            Id = id,
+            Step = OracleStep.Committed,
+            QueryId = eventValue.QueryId.ToHex(),
+        };
         ObjectMapper.Map<LogEventContext, OracleQueryInfoIndex>(context, info);
 
         await Repository.AddOrUpdateAsync(info);

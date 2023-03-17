@@ -9,7 +9,6 @@ public class ContractInfoOptions
 
 public class ContractInfo
 {
-    public string TokenContractAddress { get; set; }
     public string BridgeContractAddress { get; set; }
     public string OracleContractAddress { get; set; }
     public string ReportContractAddress { get; set; }

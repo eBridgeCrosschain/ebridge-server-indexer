@@ -25,7 +25,7 @@ public class ReceiptCreatedProcessor : CrossChainProcessorBase<ReceiptCreated>
     
     protected override async Task HandleEventAsync(ReceiptCreated eventValue, LogEventContext context)
     {
-        var id = context.TransactionId;
+        var id = IdGenerateHelper.GetId(context.ChainId, context.TransactionId);
 
         var info = new CrossChainTransferInfoIndex
         {
@@ -39,7 +39,8 @@ public class ReceiptCreatedProcessor : CrossChainProcessorBase<ReceiptCreated>
             TransferBlockHeight = context.BlockHeight,
             TransferTime = context.BlockTime,
             TransferTransactionId = context.TransactionId,
-            TransferType = TransferType.Transfer
+            TransferType = TransferType.Transfer,
+            CrossChainType = CrossChainType.Heterogeneous
         };
         ObjectMapper.Map<LogEventContext, CrossChainTransferInfoIndex>(context, info);
 

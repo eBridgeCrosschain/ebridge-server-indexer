@@ -25,15 +25,17 @@ public class ReportConfirmedProcessor: ReportProcessorBase<ReportConfirmed>
         {
             return;
         }
-        
-        var reportId = GetReportInfoId(context.ChainId, eventValue.RoundId, eventValue.Token,
-            eventValue.TargetChainId);
-        
-        var reportInfo =
-            await Repository.GetFromBlockStateSetAsync(reportId, context.ChainId);
-        reportInfo.Step = ReportStep.Confirmed;
+        var id = IdGenerateHelper.GetId(context.ChainId, context.TransactionId);
+        var reportInfo = new ReportInfoIndex()
+        {
+            Id = id,
+            RoundId = eventValue.RoundId,
+            Token = eventValue.Token,
+            TargetChainId = eventValue.TargetChainId,
+            Step = ReportStep.Confirmed
+        };
         ObjectMapper.Map<LogEventContext, ReportInfoIndex>(context, reportInfo);
-        
+
         await Repository.AddOrUpdateAsync(reportInfo);
     }
 }

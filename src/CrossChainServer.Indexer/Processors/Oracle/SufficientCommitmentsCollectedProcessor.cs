@@ -22,10 +22,13 @@ public class SufficientCommitmentsCollectedProcessor : OracleProcessorBase<Suffi
 
     protected override async Task HandleEventAsync(SufficientCommitmentsCollected eventValue, LogEventContext context)
     {
-        var id = GetOracleInfoId(context.ChainId, eventValue.QueryId);
-
-        var info = await Repository.GetFromBlockStateSetAsync(id, context.ChainId);
-        info.Step = OracleStep.SufficientCommitmentsCollected;
+        var id = IdGenerateHelper.GetId(context.ChainId, context.TransactionId);
+        var info = new OracleQueryInfoIndex()
+        {
+            Id = id,
+            Step = OracleStep.SufficientCommitmentsCollected,
+            QueryId = eventValue.QueryId.ToHex(),
+        };
         ObjectMapper.Map<LogEventContext, OracleQueryInfoIndex>(context, info);
 
         await Repository.AddOrUpdateAsync(info);

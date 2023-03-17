@@ -25,7 +25,7 @@ public class SideChainIndexedProcessor: CrossChainProcessorBase<SideChainIndexed
     
     protected override async Task HandleEventAsync(SideChainIndexed eventValue, LogEventContext context)
     {
-        var id = IdGenerateHelper.GetId(context.TransactionId, eventValue.ChainId);
+        var id = IdGenerateHelper.GetId(context.ChainId, context.TransactionId, eventValue.ChainId);
 
         var info = new CrossChainIndexingInfoIndex
         {

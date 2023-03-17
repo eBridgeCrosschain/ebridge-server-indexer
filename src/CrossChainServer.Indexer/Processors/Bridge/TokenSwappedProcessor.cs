@@ -25,7 +25,7 @@ public class TokenSwappedProcessor: CrossChainProcessorBase<TokenSwapped>
     
     protected override async Task HandleEventAsync(TokenSwapped eventValue, LogEventContext context)
     {
-        var id = context.TransactionId;
+        var id = IdGenerateHelper.GetId(context.ChainId, context.TransactionId);
 
         var info = new CrossChainTransferInfoIndex
         {
@@ -38,7 +38,8 @@ public class TokenSwappedProcessor: CrossChainProcessorBase<TokenSwapped>
             ReceiveTokenSymbol = eventValue.Symbol,
             ToAddress = eventValue.Address.ToBase58(),
             ReceiptId = eventValue.ReceiptId,
-            TransferType = TransferType.Receive
+            TransferType = TransferType.Receive,
+            CrossChainType = CrossChainType.Heterogeneous
         };
         ObjectMapper.Map<LogEventContext, CrossChainTransferInfoIndex>(context, info);
 

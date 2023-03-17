@@ -25,7 +25,7 @@ public class CrossChainReceivedProcessor: CrossChainProcessorBase<CrossChainRece
 
     protected override async Task HandleEventAsync(CrossChainReceived eventValue, LogEventContext context)
     {
-        var id = context.TransactionId;
+        var id = IdGenerateHelper.GetId(context.ChainId, context.TransactionId);
 
         var info = new CrossChainTransferInfoIndex
         {
@@ -39,7 +39,8 @@ public class CrossChainReceivedProcessor: CrossChainProcessorBase<CrossChainRece
             ReceiveTokenSymbol = eventValue.Symbol,
             FromAddress = eventValue.From.ToBase58(),
             ToAddress = eventValue.To.ToBase58(),
-            TransferType = TransferType.Receive
+            TransferType = TransferType.Receive,
+            CrossChainType = CrossChainType.Homogeneous
         };
         ObjectMapper.Map<LogEventContext, CrossChainTransferInfoIndex>(context, info);
 

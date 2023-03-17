@@ -5,7 +5,7 @@ using Nest;
 
 namespace CrossChainServer.Indexer.Entities;
 
-public class ReportInfoIndex : AElfIndexerClientEntity<string>, IIndexBuild
+public class ReportInfoIndex : CrossChainServerIndexerEntity<string>, IIndexBuild
 {
     public long RoundId { get; set; }
     [Keyword]
@@ -17,8 +17,6 @@ public class ReportInfoIndex : AElfIndexerClientEntity<string>, IIndexBuild
     [Keyword]
     public string ReceiptHash { get; set; }
     public ReportStep Step { get; set; }
-    public DateTime BlockTime { get; set; }
-
 }
 
 public enum ReportStep
