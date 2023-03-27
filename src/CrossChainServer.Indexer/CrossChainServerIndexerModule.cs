@@ -12,7 +12,7 @@ using Volo.Abp.Modularity;
 namespace CrossChainServer.Indexer;
 
 [DependsOn(typeof(AElfIndexerClientModule))]
-public class CrossChainServerIndexerModule:AElfIndexerClientPluginBaseModule<CrossChainServerIndexerModule, CrossChainServerIndexerCASchema, Query>
+public class CrossChainServerIndexerModule:AElfIndexerClientPluginBaseModule<CrossChainServerIndexerModule, CrossChainServerIndexerSchema, Query>
 {
     protected override void ConfigureServices(IServiceCollection serviceCollection)
     {

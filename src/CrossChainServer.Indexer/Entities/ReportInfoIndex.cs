@@ -5,7 +5,7 @@ using Nest;
 
 namespace CrossChainServer.Indexer.Entities;
 
-public class ReportInfoIndex : CrossChainServerIndexerEntity<string>, IIndexBuild
+public class ReportInfoIndex : CrossChainIndexerEntity<string>, IIndexBuild
 {
     public long RoundId { get; set; }
     [Keyword]

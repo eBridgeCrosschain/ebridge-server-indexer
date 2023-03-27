@@ -25,7 +25,6 @@
 
     <ItemGroup>
       <Folder Include="Logs" />
-      <Folder Include="obj\Debug" />
       <Folder Include="plugIns" />
     </ItemGroup>
 </Project>

@@ -5,7 +5,7 @@ using Nest;
 
 namespace CrossChainServer.Indexer.Entities;
 
-public class OracleQueryInfoIndex : CrossChainServerIndexerEntity<string>, IIndexBuild
+public class OracleQueryInfoIndex : CrossChainIndexerEntity<string>, IIndexBuild
 {
     [Keyword]
     public string QueryId { get; set; }

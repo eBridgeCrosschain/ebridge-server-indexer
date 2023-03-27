@@ -7,6 +7,5 @@
       <PackageReference Include="AElfIndexer.Client" Version="1.0.0-24" />
     </ItemGroup>
     <ItemGroup>
-      <Folder Include="obj\Debug" />
     </ItemGroup>
 </Project>

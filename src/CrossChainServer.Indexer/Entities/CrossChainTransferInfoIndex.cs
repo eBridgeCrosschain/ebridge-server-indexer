@@ -4,7 +4,7 @@ using Nest;
 
 namespace CrossChainServer.Indexer.Entities;
 
-public class CrossChainTransferInfoIndex : CrossChainServerIndexerEntity<string>, IIndexBuild
+public class CrossChainTransferInfoIndex : CrossChainIndexerEntity<string>, IIndexBuild
 {
     [Keyword]
     public string FromChainId { get; set; }
