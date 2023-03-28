@@ -17,6 +17,8 @@ public class Query
         [FromServices] IAElfIndexerClientEntityRepository<ReportInfoIndex, LogEventInfo> repository,
         [FromServices] IObjectMapper objectMapper, QueryDto dto)
     {
+        dto.Validate();
+        
         var mustQuery = new List<Func<QueryContainerDescriptor<ReportInfoIndex>, QueryContainer>>();
 
         mustQuery.Add(q => q.Term(i => i.Field(f => f.ChainId).Value(dto.ChainId)));
@@ -40,6 +42,8 @@ public class Query
         [FromServices] IAElfIndexerClientEntityRepository<CrossChainIndexingInfoIndex, LogEventInfo> repository,
         [FromServices] IObjectMapper objectMapper, QueryDto dto)
     {
+        dto.Validate();
+        
         var mustQuery = new List<Func<QueryContainerDescriptor<CrossChainIndexingInfoIndex>, QueryContainer>>();
 
         mustQuery.Add(q => q.Term(i => i.Field(f => f.ChainId).Value(dto.ChainId)));
@@ -63,6 +67,8 @@ public class Query
         [FromServices] IAElfIndexerClientEntityRepository<CrossChainTransferInfoIndex, LogEventInfo> repository,
         [FromServices] IObjectMapper objectMapper, QueryDto dto)
     {
+        dto.Validate();
+        
         var mustQuery = new List<Func<QueryContainerDescriptor<CrossChainTransferInfoIndex>, QueryContainer>>();
 
         mustQuery.Add(q => q.Term(i => i.Field(f => f.ChainId).Value(dto.ChainId)));
@@ -86,6 +92,8 @@ public class Query
         [FromServices] IAElfIndexerClientEntityRepository<OracleQueryInfoIndex, LogEventInfo> repository,
         [FromServices] IObjectMapper objectMapper, QueryDto dto)
     {
+        dto.Validate();
+        
         var mustQuery = new List<Func<QueryContainerDescriptor<OracleQueryInfoIndex>, QueryContainer>>();
 
         mustQuery.Add(q => q.Term(i => i.Field(f => f.ChainId).Value(dto.ChainId)));
