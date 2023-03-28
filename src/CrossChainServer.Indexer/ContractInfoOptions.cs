@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace CrossChainServer.Indexer;
 
 public class ContractInfoOptions

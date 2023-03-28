@@ -1,6 +1,4 @@
-using System;
 using AElf.Indexing.Elasticsearch;
-using AElfIndexer.Client;
 using Nest;
 
 namespace CrossChainServer.Indexer.Entities;

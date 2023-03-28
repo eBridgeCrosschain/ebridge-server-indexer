@@ -30,9 +30,4 @@ public abstract class ReportProcessorBase<TEvent>: AElfLogEventProcessorBase<TEv
     {
         return ContractInfoOptions.ContractInfos[chainId].ReportContractAddress;
     }
-    
-    protected string GetReportInfoId(string chainId, long roundId, string token, string targetChainId)
-    {
-        return IdGenerateHelper.GetId(chainId, roundId, token, targetChainId);
-    }
 }

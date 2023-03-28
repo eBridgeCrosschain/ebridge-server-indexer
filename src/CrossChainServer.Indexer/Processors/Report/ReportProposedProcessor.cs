@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using AElf.Contracts.Report;
 using AElfIndexer.Client;
 using AElfIndexer.Client.Handlers;

@@ -1,6 +1,4 @@
-using System;
 using AElf.Indexing.Elasticsearch;
-using AElfIndexer.Client;
 using Nest;
 
 namespace CrossChainServer.Indexer.Entities;
@@ -14,7 +12,6 @@ public class OracleQueryInfoIndex : CrossChainIndexerEntity<string>, IIndexBuild
     public long StartIndex { get; set; }
     public long EndIndex { get; set; }
     public OracleStep Step { get; set; }
-    public DateTime BlockTime { get; set; }
 }
 
 public enum OracleStep
