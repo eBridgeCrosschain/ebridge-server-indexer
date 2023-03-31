@@ -27,12 +27,15 @@ public class CrossChainServerIndexerMapperProfile:Profile
         CreateMap<LogEventContext, QueryCompletedWithoutAggregation>();
         CreateMap<LogEventContext, QueryCreated>();
         CreateMap<LogEventContext, SufficientCommitmentsCollected>();
-        
-        CreateMap<LogEventContext, ReportInfoIndex>();
-        
-        CreateMap<CrossChainIndexingInfoIndex, OracleQueryInfoDto>();
-        CreateMap<CrossChainTransferInfoIndex, OracleQueryInfoDto>();
+
+        CreateMap<CrossChainIndexingInfoIndex, CrossChainIndexingInfoDto>();
+        CreateMap<CrossChainTransferInfoIndex, CrossChainTransferInfoDto>();
         CreateMap<OracleQueryInfoIndex, OracleQueryInfoDto>();
         CreateMap<ReportInfoIndex, ReportInfoDto>();
+        
+        CreateMap<LogEventContext, CrossChainIndexingInfoIndex>();
+        CreateMap<LogEventContext, CrossChainTransferInfoIndex>();
+        CreateMap<LogEventContext, OracleQueryInfoIndex>();
+        CreateMap<LogEventContext, ReportInfoIndex>();
     }
 }

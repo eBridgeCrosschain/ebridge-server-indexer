@@ -11,4 +11,5 @@ public class ContractInfo
     public string OracleContractAddress { get; set; }
     public string ReportContractAddress { get; set; }
     public string CrossChainContractAddress { get; set; }
+    public string TokenContractAddress { get; set; }
 }

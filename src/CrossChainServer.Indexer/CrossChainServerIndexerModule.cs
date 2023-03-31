@@ -6,6 +6,7 @@ using CrossChainServer.Indexer.Processors.Bridge;
 using CrossChainServer.Indexer.Processors.CrossChain;
 using CrossChainServer.Indexer.Processors.Oracle;
 using CrossChainServer.Indexer.Processors.Report;
+using CrossChainServer.Indexer.Processors.Token;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.Modularity;
 
@@ -39,6 +40,6 @@ public class CrossChainServerIndexerModule:AElfIndexerClientPluginBaseModule<Cro
         Configure<ContractInfoOptions>(configuration.GetSection("ContractInfo"));
     }
 
-    protected override string ClientId => "AElfIndexer_DApp";
-    protected override string Version => "";
+    protected override string ClientId => "AElfIndexer_CrossChain";
+    protected override string Version => "c7d6c3092933458986da72d4b5a57354";
 }

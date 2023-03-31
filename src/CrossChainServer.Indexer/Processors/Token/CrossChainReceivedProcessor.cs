@@ -8,9 +8,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Volo.Abp.ObjectMapping;
 
-namespace CrossChainServer.Indexer.Processors.CrossChain;
+namespace CrossChainServer.Indexer.Processors.Token;
 
-public class CrossChainReceivedProcessor: CrossChainProcessorBase<CrossChainReceived>
+public class CrossChainReceivedProcessor: TokenProcessorBase<CrossChainReceived>
 {
     private readonly IAElfIndexerClientEntityRepository<CrossChainTransferInfoIndex, LogEventInfo> _repository;
 
