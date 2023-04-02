@@ -10,14 +10,14 @@ using Volo.Abp.ObjectMapping;
 
 namespace CrossChainServer.Indexer.Processors.Bridge;
 
-public class ReceiptCreatedProcessor : CrossChainProcessorBase<ReceiptCreated>
+public class ReceiptCreatedProcessor : BridgeProcessorBase<ReceiptCreated>
 {
     private readonly IAElfIndexerClientEntityRepository<CrossChainTransferInfoIndex, LogEventInfo> _repository;
     
     public ReceiptCreatedProcessor(ILogger<ReceiptCreatedProcessor> logger, IObjectMapper objectMapper,
             IAElfIndexerClientEntityRepository<CrossChainTransferInfoIndex, LogEventInfo> repository,
             IOptionsSnapshot<ContractInfoOptions> contractInfoOptions)
-        : base(logger,objectMapper, contractInfoOptions)
+        : base(logger,objectMapper, contractInfoOptions, repository)
     {
         _repository = repository;
     }
@@ -39,7 +39,8 @@ public class ReceiptCreatedProcessor : CrossChainProcessorBase<ReceiptCreated>
             TransferTime = context.BlockTime,
             TransferTransactionId = context.TransactionId,
             TransferType = TransferType.Transfer,
-            CrossChainType = CrossChainType.Heterogeneous
+            CrossChainType = CrossChainType.Heterogeneous,
+            ReceiptId = eventValue.ReceiptId
         };
         ObjectMapper.Map<LogEventContext, CrossChainTransferInfoIndex>(context, info);
 

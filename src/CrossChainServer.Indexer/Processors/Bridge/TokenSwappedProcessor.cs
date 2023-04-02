@@ -10,14 +10,14 @@ using Volo.Abp.ObjectMapping;
 
 namespace CrossChainServer.Indexer.Processors.Bridge;
 
-public class TokenSwappedProcessor: CrossChainProcessorBase<TokenSwapped>
+public class TokenSwappedProcessor: BridgeProcessorBase<TokenSwapped>
 {
     private readonly IAElfIndexerClientEntityRepository<CrossChainTransferInfoIndex, LogEventInfo> _repository;
 
     public TokenSwappedProcessor(ILogger<TokenSwappedProcessor> logger, IObjectMapper objectMapper,
         IAElfIndexerClientEntityRepository<CrossChainTransferInfoIndex, LogEventInfo> repository,
         IOptionsSnapshot<ContractInfoOptions> contractInfoOptions)
-        : base(logger,objectMapper, contractInfoOptions)
+        : base(logger,objectMapper, contractInfoOptions,repository)
     {
         _repository = repository;
     }

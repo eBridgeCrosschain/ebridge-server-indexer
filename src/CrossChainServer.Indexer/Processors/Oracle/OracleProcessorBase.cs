@@ -31,4 +31,9 @@ public abstract class OracleProcessorBase<TEvent> : AElfLogEventProcessorBase<TE
     {
         return ContractInfoOptions.ContractInfos[chainId].OracleContractAddress;
     }
+    
+    protected string GetOracleInfoId(LogEventContext context)
+    {
+        return IdGenerateHelper.GetId(context.ChainId, context.TransactionId, typeof(TEvent).Name);
+    }
 }

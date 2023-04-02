@@ -41,5 +41,5 @@ public class CrossChainServerIndexerModule:AElfIndexerClientPluginBaseModule<Cro
     }
 
     protected override string ClientId => "AElfIndexer_CrossChain";
-    protected override string Version => "c7d6c3092933458986da72d4b5a57354";
+    protected override string Version => "07bfc9bc8fad4649aa3b641d9340874e";
 }

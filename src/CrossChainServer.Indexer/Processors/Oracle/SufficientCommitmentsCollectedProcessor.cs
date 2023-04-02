@@ -21,7 +21,7 @@ public class SufficientCommitmentsCollectedProcessor : OracleProcessorBase<Suffi
 
     protected override async Task HandleEventAsync(SufficientCommitmentsCollected eventValue, LogEventContext context)
     {
-        var id = IdGenerateHelper.GetId(context.ChainId, context.TransactionId);
+        var id = GetOracleInfoId(context);
         var info = new OracleQueryInfoIndex()
         {
             Id = id,

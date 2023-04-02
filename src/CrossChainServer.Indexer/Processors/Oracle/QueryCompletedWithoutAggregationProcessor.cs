@@ -21,7 +21,7 @@ public class QueryCompletedWithoutAggregationProcessor : OracleProcessorBase<Que
 
     protected override async Task HandleEventAsync(QueryCompletedWithoutAggregation eventValue, LogEventContext context)
     {
-        var id = IdGenerateHelper.GetId(context.ChainId, context.TransactionId);
+        var id = GetOracleInfoId(context);
         var info = new OracleQueryInfoIndex()
         {
             Id = id,

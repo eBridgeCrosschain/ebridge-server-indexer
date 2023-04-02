@@ -25,7 +25,7 @@ public class ReportProposedProcessor: ReportProcessorBase<ReportProposed>
             return;
         }
 
-        var id = IdGenerateHelper.GetId(context.ChainId, context.TransactionId);
+        var id = GetReportInfoId(context);
         var reportInfo = new ReportInfoIndex()
         {
             Id = id,

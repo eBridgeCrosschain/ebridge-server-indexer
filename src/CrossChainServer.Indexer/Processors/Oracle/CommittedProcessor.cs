@@ -20,7 +20,7 @@ public class CommittedProcessor : OracleProcessorBase<Committed>
 
     protected override async Task HandleEventAsync(Committed eventValue, LogEventContext context)
     {
-        var id = IdGenerateHelper.GetId(context.ChainId, context.TransactionId);
+        var id = GetOracleInfoId(context);
         var info = new OracleQueryInfoIndex()
         {
             Id = id,

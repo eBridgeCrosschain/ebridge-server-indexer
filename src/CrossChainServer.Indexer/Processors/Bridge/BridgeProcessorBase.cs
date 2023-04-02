@@ -17,7 +17,7 @@ public class BridgeProcessorBase<TEvent>: AElfLogEventProcessorBase<TEvent, LogE
     protected readonly ContractInfoOptions ContractInfoOptions;
     protected readonly IAElfIndexerClientEntityRepository<CrossChainTransferInfoIndex, LogEventInfo> Repository;
 
-    protected BridgeProcessorBase(ILogger<CrossChainProcessorBase<TEvent>> logger, IObjectMapper objectMapper,
+    protected BridgeProcessorBase(ILogger<BridgeProcessorBase<TEvent>> logger, IObjectMapper objectMapper,
         IOptionsSnapshot<ContractInfoOptions> contractInfoOptions, IAElfIndexerClientEntityRepository<CrossChainTransferInfoIndex, LogEventInfo> repository)
         : base(logger)
     {

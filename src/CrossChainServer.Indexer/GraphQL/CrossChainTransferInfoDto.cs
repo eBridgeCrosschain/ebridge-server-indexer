@@ -19,4 +19,5 @@ public class CrossChainTransferInfoDto : GraphQLDto
     public string TransferTokenSymbol { get; set; }
     public string ReceiveTokenSymbol { get; set; }
     public TransferType TransferType { get; set; }
+    public CrossChainType CrossChainType { get; set; }
 }

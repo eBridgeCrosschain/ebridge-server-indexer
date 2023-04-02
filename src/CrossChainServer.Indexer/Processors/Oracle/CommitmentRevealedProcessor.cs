@@ -20,7 +20,7 @@ public class CommitmentRevealedProcessor : OracleProcessorBase<CommitmentReveale
 
     protected override async Task HandleEventAsync(CommitmentRevealed eventValue, LogEventContext context)
     {
-        var id = IdGenerateHelper.GetId(context.ChainId, context.TransactionId);
+        var id = GetOracleInfoId(context);
         var info = new OracleQueryInfoIndex()
         {
             Id = id,
