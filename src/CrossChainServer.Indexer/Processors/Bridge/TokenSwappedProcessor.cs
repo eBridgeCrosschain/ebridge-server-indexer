@@ -29,18 +29,14 @@ public class TokenSwappedProcessor: BridgeProcessorBase<TokenSwapped>
         var info = new CrossChainTransferInfoIndex
         {
             Id = id,
-            ReceiveAmount = eventValue.Amount,
             ReceiveTime = context.BlockTime,
-            FromChainId = eventValue.FromChainId,
             ReceiveTransactionId = context.TransactionId,
             ToChainId = context.ChainId,
-            ReceiveTokenSymbol = eventValue.Symbol,
-            ToAddress = eventValue.Address.ToBase58(),
-            ReceiptId = eventValue.ReceiptId,
             TransferType = TransferType.Receive,
             CrossChainType = CrossChainType.Heterogeneous
         };
-        ObjectMapper.Map<LogEventContext, CrossChainTransferInfoIndex>(context, info);
+        ObjectMapper.Map(context, info);
+        ObjectMapper.Map(eventValue, info);
 
         await _repository.AddOrUpdateAsync(info);
     }

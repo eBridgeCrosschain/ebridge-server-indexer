@@ -25,10 +25,10 @@ public class SufficientCommitmentsCollectedProcessor : OracleProcessorBase<Suffi
         var info = new OracleQueryInfoIndex()
         {
             Id = id,
-            Step = OracleStep.SufficientCommitmentsCollected,
-            QueryId = eventValue.QueryId.ToHex(),
+            Step = OracleStep.SufficientCommitmentsCollected
         };
-        ObjectMapper.Map<LogEventContext, OracleQueryInfoIndex>(context, info);
+        ObjectMapper.Map(context, info);        
+        ObjectMapper.Map(eventValue, info);
 
         await Repository.AddOrUpdateAsync(info);
     }

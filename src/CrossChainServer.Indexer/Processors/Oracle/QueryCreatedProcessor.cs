@@ -34,7 +34,7 @@ public class QueryCreatedProcessor: OracleProcessorBase<QueryCreated>
             Step = OracleStep.QueryCreated,
             QueryId = eventValue.QueryId.ToHex(),
         };
-        ObjectMapper.Map<LogEventContext, OracleQueryInfoIndex>(context, info);
+        ObjectMapper.Map(context, info);
 
         await Repository.AddOrUpdateAsync(info);
     }

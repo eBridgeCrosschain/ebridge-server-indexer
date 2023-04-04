@@ -24,10 +24,10 @@ public class CommittedProcessor : OracleProcessorBase<Committed>
         var info = new OracleQueryInfoIndex()
         {
             Id = id,
-            Step = OracleStep.Committed,
-            QueryId = eventValue.QueryId.ToHex(),
+            Step = OracleStep.Committed
         };
-        ObjectMapper.Map<LogEventContext, OracleQueryInfoIndex>(context, info);
+        ObjectMapper.Map(context, info);
+        ObjectMapper.Map(eventValue, info);
 
         await Repository.AddOrUpdateAsync(info);
     }

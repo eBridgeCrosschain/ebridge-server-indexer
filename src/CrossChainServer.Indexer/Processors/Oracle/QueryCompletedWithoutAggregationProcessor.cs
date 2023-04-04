@@ -25,10 +25,10 @@ public class QueryCompletedWithoutAggregationProcessor : OracleProcessorBase<Que
         var info = new OracleQueryInfoIndex()
         {
             Id = id,
-            Step = OracleStep.QueryCompleted,
-            QueryId = eventValue.QueryId.ToHex(),
+            Step = OracleStep.QueryCompleted
         };
-        ObjectMapper.Map<LogEventContext, OracleQueryInfoIndex>(context, info);
+        ObjectMapper.Map(context, info);
+        ObjectMapper.Map(eventValue, info);
 
         await Repository.AddOrUpdateAsync(info);
     }

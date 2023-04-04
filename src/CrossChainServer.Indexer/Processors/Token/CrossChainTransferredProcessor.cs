@@ -29,19 +29,15 @@ public class CrossChainTransferredProcessor: TokenProcessorBase<CrossChainTransf
         var info = new CrossChainTransferInfoIndex
         {
             Id = id,
-            TransferAmount = eventValue.Amount,
-            FromAddress = eventValue.From.ToBase58(),
-            ToAddress = eventValue.To.ToBase58(),
-            TransferTokenSymbol = eventValue.Symbol,
             FromChainId = context.ChainId,
-            ToChainId = ChainHelper.ConvertChainIdToBase58(eventValue.ToChainId),
             TransferBlockHeight = context.BlockHeight,
             TransferTime = context.BlockTime,
             TransferTransactionId = context.TransactionId,
             TransferType = TransferType.Transfer,
             CrossChainType = CrossChainType.Homogeneous
         };
-        ObjectMapper.Map<LogEventContext, CrossChainTransferInfoIndex>(context, info);
+        ObjectMapper.Map(context, info);
+        ObjectMapper.Map(eventValue, info);
 
         await _repository.AddOrUpdateAsync(info);
     }

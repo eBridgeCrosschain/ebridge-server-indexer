@@ -28,12 +28,10 @@ public class SideChainIndexedProcessor: CrossChainProcessorBase<SideChainIndexed
 
         var info = new CrossChainIndexingInfoIndex
         {
-            Id = id,
-            BlockTime = context.BlockTime,
-            IndexChainId = ChainHelper.ConvertChainIdToBase58(eventValue.ChainId),
-            IndexBlockHeight = eventValue.IndexedHeight
+            Id = id
         };
-        ObjectMapper.Map<LogEventContext, CrossChainIndexingInfoIndex>(context, info);
+        ObjectMapper.Map(context, info);
+        ObjectMapper.Map(eventValue, info);
 
         await _repository.AddOrUpdateAsync(info);
     }

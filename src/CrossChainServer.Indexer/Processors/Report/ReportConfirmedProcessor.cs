@@ -28,12 +28,10 @@ public class ReportConfirmedProcessor: ReportProcessorBase<ReportConfirmed>
         var reportInfo = new ReportInfoIndex()
         {
             Id = id,
-            RoundId = eventValue.RoundId,
-            Token = eventValue.Token,
-            TargetChainId = eventValue.TargetChainId,
             Step = ReportStep.Confirmed
         };
-        ObjectMapper.Map<LogEventContext, ReportInfoIndex>(context, reportInfo);
+        ObjectMapper.Map(context, reportInfo);
+        ObjectMapper.Map(eventValue, reportInfo);
 
         await Repository.AddOrUpdateAsync(reportInfo);
     }

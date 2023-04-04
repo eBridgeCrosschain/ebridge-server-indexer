@@ -24,10 +24,10 @@ public class CommitmentRevealedProcessor : OracleProcessorBase<CommitmentReveale
         var info = new OracleQueryInfoIndex()
         {
             Id = id,
-            Step = OracleStep.CommitmentRevealed,
-            QueryId = eventValue.QueryId.ToHex(),
+            Step = OracleStep.CommitmentRevealed
         };
-        ObjectMapper.Map<LogEventContext, OracleQueryInfoIndex>(context, info);
+        ObjectMapper.Map(context, info);
+        ObjectMapper.Map(eventValue, info);
 
         await Repository.AddOrUpdateAsync(info);
     }

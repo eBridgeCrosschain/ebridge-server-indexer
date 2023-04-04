@@ -30,13 +30,11 @@ public class ReportProposedProcessor: ReportProcessorBase<ReportProposed>
         {
             Id = id,
             ReceiptId = eventValue.QueryInfo.Title.Split("_")[2],
-            ReceiptHash = eventValue.QueryInfo.Options[0],
-            RoundId = eventValue.RoundId,
-            Token = eventValue.Token,
-            TargetChainId = eventValue.TargetChainId,
             Step = ReportStep.Proposed
         };
-        ObjectMapper.Map<LogEventContext, ReportInfoIndex>(context, reportInfo);
+        ObjectMapper.Map(context, reportInfo);
+        ObjectMapper.Map(eventValue, reportInfo);
+        
         await Repository.AddOrUpdateAsync(reportInfo);
     }
 }
