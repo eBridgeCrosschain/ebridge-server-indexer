@@ -21,6 +21,8 @@ public class CrossChainServerIndexerMapperProfile:Profile
         CreateMap<Address, string>().ConvertUsing(s => s.ToBase58());
         
         // Token
+        CreateMap<LogEventContext, CrossChainTransferInfoIndex>();
+        
         CreateMap<CrossChainReceived, CrossChainTransferInfoIndex>()
             .ForMember(d => d.FromChainId, opt => opt.MapFrom(o => ChainHelper.ConvertChainIdToBase58(o.FromChainId)))
             .ForMember(d => d.TransferTransactionId, opt => opt.MapFrom(o => o.TransferTransactionId.ToHex()))

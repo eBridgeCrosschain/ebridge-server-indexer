@@ -30,8 +30,8 @@ public class SideChainIndexedProcessor: CrossChainProcessorBase<SideChainIndexed
         {
             Id = id
         };
-        ObjectMapper.Map(context, info);
         ObjectMapper.Map(eventValue, info);
+        ObjectMapper.Map(context, info);
 
         await _repository.AddOrUpdateAsync(info);
     }
