@@ -15,6 +15,8 @@ public class ReportInfoIndex : CrossChainIndexerEntity<string>, IIndexBuild
     [Keyword]
     public string ReceiptHash { get; set; }
     public ReportStep Step { get; set; }
+
+    public string ReceiptInfo { get; set; }
 }
 
 public enum ReportStep
