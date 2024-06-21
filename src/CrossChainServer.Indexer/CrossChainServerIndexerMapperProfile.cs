@@ -43,7 +43,8 @@ public class CrossChainServerIndexerMapperProfile:Profile
         CreateMap<ReportConfirmed, ReportInfoIndex>();
 
         CreateMap<ReportProposed, ReportInfoIndex>()
-            .ForMember(d => d.ReceiptHash, opt => opt.MapFrom(o => o.QueryInfo.Options[0]));
+            .ForMember(d => d.ReceiptHash, opt => opt.MapFrom(o => o.QueryInfo.Options[0]))
+            .ForMember(d => d.ReceiptInfo, opt => opt.MapFrom(o => o.QueryInfo.Options[1]));
 
         CreateMap<ReportInfoIndex, ReportInfoDto>();
 
