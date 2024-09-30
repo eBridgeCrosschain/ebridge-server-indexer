@@ -53,7 +53,7 @@ public class ReceiptCreatedProcessorTests : EbridgeServerIndexerTestBase
         var entities = await Query.CrossChainTransferInfo(_repository, _objectMapper, new QueryInput
         {
             ChainId = ChainId,
-            StartBlockHeight = 0,
+            StartBlockHeight = 5,
             EndBlockHeight = 100
         });
         entities.Count.ShouldBe(2);

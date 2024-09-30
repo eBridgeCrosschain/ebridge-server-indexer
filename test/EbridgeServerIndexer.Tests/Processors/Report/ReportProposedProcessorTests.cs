@@ -45,7 +45,7 @@ public class ReportProposedProcessorTests : EbridgeServerIndexerTestBase
         var entities = await Query.ReportInfo(_repository, _objectMapper, new QueryInput
         {
             ChainId = ChainId,
-            StartBlockHeight = 0,
+            StartBlockHeight = 5,
             EndBlockHeight = 100
         });
         entities.Count.ShouldBe(1);
