@@ -9,6 +9,7 @@ using EbridgeServerIndexer.GraphQL;
 using AutoMapper;
 using EBridge.Contracts.Bridge;
 using EBridge.Contracts.Oracle;
+using EBridge.Contracts.TokenPool;
 
 namespace EbridgeServerIndexer;
 
@@ -91,5 +92,16 @@ public class EbridgeServerIndexerProfile : Profile
             .ForMember(d => d.ReceiveAmount, opt => opt.MapFrom(o => o.Amount))
             .ForMember(d => d.ReceiveTokenSymbol, opt => opt.MapFrom(o => o.Symbol))
             .ForMember(d => d.ToAddress, opt => opt.MapFrom(o => o.Address.ToBase58()));
+        // TokenPool
+        CreateMap<UserLiquidityRecordIndex, UserLiquidityRecordDto>()
+            .ForMember(d=>d.BlockHash, opt=>opt.MapFrom(o=>o.Metadata.Block.BlockHash))
+            .ForMember(d=>d.BlockHeight, opt=>opt.MapFrom(o=>o.Metadata.Block.BlockHeight))
+            .ForMember(d=>d.BlockTime, opt=>opt.MapFrom(o=>o.Metadata.Block.BlockTime))
+            .ForMember(d=>d.ChainId, opt=>opt.MapFrom(o=>o.Metadata.ChainId));
+        CreateMap<PoolLiquidityRecordIndex, PoolLiquidityRecordDto>()
+            .ForMember(d=>d.BlockHash, opt=>opt.MapFrom(o=>o.Metadata.Block.BlockHash))
+            .ForMember(d=>d.BlockHeight, opt=>opt.MapFrom(o=>o.Metadata.Block.BlockHeight))
+            .ForMember(d=>d.BlockTime, opt=>opt.MapFrom(o=>o.Metadata.Block.BlockTime))
+            .ForMember(d=>d.ChainId, opt=>opt.MapFrom(o=>o.Metadata.ChainId));
     }
 }

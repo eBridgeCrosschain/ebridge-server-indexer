@@ -4,6 +4,7 @@ using EbridgeServerIndexer.Processors.CrossChain;
 using EbridgeServerIndexer.Processors.Oracle;
 using EbridgeServerIndexer.Processors.Report;
 using EbridgeServerIndexer.Processors.Token;
+using EbridgeServerIndexer.Processors.TokenPool;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.Modularity;
 
@@ -45,5 +46,10 @@ public class EbridgeServerIndexerTestModule : AbpModule
         context.Services.AddSingleton<CrossChainTransferredProcessor>();
         //CrossChainReceivedProcessor
         context.Services.AddSingleton<CrossChainReceivedProcessor>();
+        context.Services.AddSingleton<LiquidityAddedProcessor>();
+        context.Services.AddSingleton<LiquidityRemovedProcessor>();
+        context.Services.AddSingleton<LockedProcessor>();
+        context.Services.AddSingleton<ReleasedProcessor>();
+
     }
 }

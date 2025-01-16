@@ -1,10 +1,12 @@
 using AeFinder.Sdk.Processor;
+using EBridge.Contracts.TokenPool;
 using EbridgeServerIndexer.GraphQL;
 using EbridgeServerIndexer.Processors.Bridge;
 using EbridgeServerIndexer.Processors.CrossChain;
 using EbridgeServerIndexer.Processors.Oracle;
 using EbridgeServerIndexer.Processors.Report;
 using EbridgeServerIndexer.Processors.Token;
+using EbridgeServerIndexer.Processors.TokenPool;
 using GraphQL.Types;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.AutoMapper;
@@ -34,5 +36,9 @@ public class EbridgeServerIndexerModule: AbpModule
         context.Services.AddSingleton<ILogEventProcessor, SufficientCommitmentsCollectedProcessor>();
         context.Services.AddSingleton<ILogEventProcessor, ReportConfirmedProcessor>();
         context.Services.AddSingleton<ILogEventProcessor, ReportProposedProcessor>();
+        context.Services.AddSingleton<ILogEventProcessor, LiquidityAddedProcessor>();
+        context.Services.AddSingleton<ILogEventProcessor, LiquidityRemovedProcessor>();
+        context.Services.AddSingleton<ILogEventProcessor, LockedProcessor>();
+        context.Services.AddSingleton<ILogEventProcessor, ReleasedProcessor>();
     }
 }
